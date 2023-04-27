@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Build } from '../build';
 import { BUILDS } from '../mock-builds';
+import { BuildService } from '../build.service';
 
 @Component({
   selector: 'app-builds',
@@ -9,12 +10,16 @@ import { BUILDS } from '../mock-builds';
 })
 export class BuildsComponent {
   builds = BUILDS;
-  newBuild: Build = { name: '', status: 'IN-PROGRESS' };
+  buildURL = "";
+  build: Build = { name: 'Empty', status: 'Empty'};
+
+  constructor(private buildService: BuildService) {}
 
   onSubmit(): void {
-    if (this.newBuild.name !== "") {
-      this.builds.push(this.newBuild);
-      this.newBuild = { name: '', status: 'IN-PROGRESS' };
+    if (this.buildURL !== "") {
+      this.getBuildStatus()
+      this.builds.push(this.build);
+      this.build = { name: 'Empty', status: 'Empty' };
     } 
   }
 
@@ -27,5 +32,9 @@ export class BuildsComponent {
 
   deleteAll(): void {
     this.builds = [];
+  }
+
+  getBuildStatus() {
+    this.buildService.getBuildStatus(this.buildURL).subscribe(build => this.build = build);
   }
 }
