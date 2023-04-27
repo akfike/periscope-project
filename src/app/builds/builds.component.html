@@ -1,14 +1,18 @@
 <div>
-    <h2>Entry Form</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" class="form-container">
       <label for="name">Link to build:</label>
       <input type="text" id="name" [(ngModel)]="buildURL" name="name">
       <button type="submit">Add</button>
     </form>
 </div>
 <div>
-    <h2>Entries</h2>
+    <div>
+    <h3>Builds</h3>
+    </div>
+    <div>
     <button (click)="deleteAll()">Clear All</button>
+    </div>
+    <div>
     <table>
         <thead>
         <tr>
@@ -24,4 +28,5 @@
         </tr>
         </tbody>
     </table>
+    </div>
 </div>
