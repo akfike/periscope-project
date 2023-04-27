@@ -1,0 +1,30 @@
+<div>
+    <h2>Entry Form</h2>
+    <form (ngSubmit)="onSubmit()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="newBuild.name" name="name" required>
+      <label for="status">Status:</label>
+      <input type="text" id="status" [(ngModel)]="newBuild.status" name="status" required>
+      <button type="submit">Add</button>
+    </form>
+</div>
+<div>
+    <h2>Entries</h2>
+    <button (click)="deleteAll()">Clear All</button>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let build of builds">
+            <td>{{build.name}}</td>
+            <td>{{build.status}}</td>
+            <td><button (click)="delete(build)">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

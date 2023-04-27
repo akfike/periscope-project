@@ -1,31 +1,3 @@
-<div>
-  <h2>Entry Form</h2>
-  <form (ngSubmit)="onSubmit()">
-    <label for="name">Name:</label>
-    <input type="text" id="name" [(ngModel)]="newEntry.name" name="name" required>
-    <label for="status">Status:</label>
-    <input type="text" id="status" [(ngModel)]="newEntry.status" name="status" required>
-    <button type="submit">Add</button>
-  </form>
-</div>
+<h1>{{title}}</h1>
 
-<div>
-  <h2>Entries</h2>
-  <button (click)="deleteAll()">Clear All</button>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let entry of entries">
-        <td>{{entry.name}}</td>
-        <td>{{entry.status}}</td>
-        <td><button (click)="delete(entry)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<app-builds></app-builds>

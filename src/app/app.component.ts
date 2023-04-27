@@ -21,22 +21,5 @@ interface Entry {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  entries: Entry[] = [];
-  newEntry: Entry = { name: '', status: '' };
-
-  onSubmit(): void {
-    this.entries.push(this.newEntry);
-    this.newEntry = { name: '', status: '' };
-  }
-
-  delete(entry: Entry): void {
-    const index = this.entries.indexOf(entry);
-    if (index >= 0) {
-      this.entries.splice(index, 1);
-    }
-  }
-
-  deleteAll(): void {
-    this.entries = [];
-  }
+  title = "Periscope"
 }
