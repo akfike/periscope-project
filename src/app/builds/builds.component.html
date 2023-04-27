@@ -1,16 +1,13 @@
 <div>
     <form (ngSubmit)="onSubmit()" class="form-container">
-      <label for="name">Link to build:</label>
+      <h3 for="name">Link to build</h3 >
       <input type="text" id="name" [(ngModel)]="buildURL" name="name">
       <button type="submit">Add</button>
     </form>
 </div>
 <div>
-    <div>
-    <h3>Builds</h3>
-    </div>
-    <div>
-    <button (click)="deleteAll()">Clear All</button>
+    <div class="table-div">
+        <button style="background-color:rgb(206, 86, 86);" (click)="deleteAll()">Clear All</button>
     </div>
     <div>
     <table>
@@ -24,7 +21,7 @@
         <tr *ngFor="let build of builds">
             <td>{{build.name}}</td>
             <td>{{build.status}}</td>
-            <td><button (click)="delete(build)">Delete</button></td>
+            <td><button style="background-color:rgb(206, 86, 86);" (click)="delete(build)">Delete</button></td>
         </tr>
         </tbody>
     </table>

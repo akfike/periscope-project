@@ -21,5 +21,5 @@ interface Entry {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "Periscope"
+  title = "Periscope - Build Monitoring"
 }
