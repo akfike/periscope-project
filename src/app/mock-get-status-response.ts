@@ -1,6 +1,7 @@
 import { Build } from "./build";
+import { Status } from "./status-options";
 
 export const mockGetStatusResponse: Build = {
     name: "Mock Jenkins Build",
-    status: "PASSED"
+    status: Status.Passed
 }

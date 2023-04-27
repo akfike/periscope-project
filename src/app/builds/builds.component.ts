@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Build } from '../build';
 import { BUILDS } from '../mock-builds';
 import { BuildService } from '../build.service';
+import { Status } from '../status-options';
 
 @Component({
   selector: 'app-builds',
@@ -11,7 +12,7 @@ import { BuildService } from '../build.service';
 export class BuildsComponent {
   builds = BUILDS;
   buildURL = "";
-  build: Build = { name: 'Empty', status: 'Empty'};
+  build: Build = { name: 'Empty', status: Status.Failed};
 
   constructor(private buildService: BuildService) {}
 
@@ -19,7 +20,7 @@ export class BuildsComponent {
     if (this.buildURL !== "") {
       this.getBuildStatus()
       this.builds.push(this.build);
-      this.build = { name: 'Empty', status: 'Empty' };
+      this.build = { name: 'Empty', status: Status.Failed };
     } 
   }
 
