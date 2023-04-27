@@ -9,11 +9,13 @@ import { BUILDS } from '../mock-builds';
 })
 export class BuildsComponent {
   builds = BUILDS;
-  newBuild: Build = { name: '', status: '' };
+  newBuild: Build = { name: '', status: 'IN-PROGRESS' };
 
   onSubmit(): void {
-    this.builds.push(this.newBuild);
-    this.newBuild = { name: '', status: '' };
+    if (this.newBuild.name !== "") {
+      this.builds.push(this.newBuild);
+      this.newBuild = { name: '', status: 'IN-PROGRESS' };
+    } 
   }
 
   delete(build: Build): void {
