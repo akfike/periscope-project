@@ -28,6 +28,7 @@
   
   h3 {
     font-size: 1.2rem;
+    text-align: left;
   }
   
   /* Button styles */
@@ -39,6 +40,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    margin-bottom:10px;
   }
   
   button:hover {
@@ -87,14 +89,23 @@
     border: 1px solid #ccc;
   }
   
+  td:last-child {
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+  }
+  
   th {
     background-color: #f2f2f2;
     font-weight: bold;
   }
-  
-  /* Utility classes */
-  .text-center {
+
+  .table-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
+
   }
   
   .mb-1 {
