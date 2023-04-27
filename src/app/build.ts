@@ -1,5 +1,4 @@
-import { Status } from "./status-options";
 export interface Build {
-    name: string;
-    status: Status;
+    name: string,
+    status: "PASSED" | "FAILED" | "PAUSE"
 }
