@@ -12,11 +12,13 @@ export class BuildsComponent {
   builds = BUILDS;
   buildURL = "";
   build: Build = { name: 'Empty', status: "FAILED"};
+  buildRequest = {};
 
   constructor(private buildService: BuildService) {}
 
   onSubmit(): void {
     if (this.buildURL !== "") {
+      this.buildRequest = {"url": this.buildURL};
       this.getBuildStatus()
       this.builds.push(this.build);
       this.build = { name: 'Empty', status: "FAILED"};
@@ -35,6 +37,6 @@ export class BuildsComponent {
   }
 
   getBuildStatus() {
-    this.buildService.getBuildStatus(this.buildURL).subscribe(build => this.build = build);
+    this.buildService.getBuildStatus(this.buildRequest).subscribe(build => this.build = build);
   }
 }

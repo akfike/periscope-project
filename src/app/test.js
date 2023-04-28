@@ -1,5 +1,7 @@
 var xhr = null;
 
+export var build_status = "";
+
 export function getXmlHttpRequestObject() {
     if (!xhr) {
         // Create a new XMLHttpRequest object 
@@ -8,22 +10,20 @@ export function getXmlHttpRequestObject() {
     return xhr;
 };
 
-export function dataCallback() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log("User data received");
-
-    }
-}
-
 export function sendData(jenkinsUrl) {
-    console.log("jenkinsURL: ", jenkinsUrl);
+    // Makes a post call to add a build
+    console.log("add a new build: ");
+    // dataToSend = document.getElementById('build-url').value;
+    if (!jenkinsUrl) {
+        console.log("URL is empty.");
+        return;
+    }
+
     xhr = getXmlHttpRequestObject();
-    xhr.onreadystatechange = sendDataCallback;
-    // asynchronous requests
-    xhr.open("POST", "http://172.22.115.88:6969/users", true);
+    // xhr.onreadystatechange = buildCallBack;
+    xhr.open("POST", "http://localhost:5000/add", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    // Send the request over the network
-    xhr.send(jenkinsUrl);
+    xhr.send(JSON.stringify({"data": jenkinsUrl["url"]}));
 }
 
 export function sendDataCallback() {
@@ -35,14 +35,21 @@ export function sendDataCallback() {
 
 
 export function getStatus() {
-    console.log("Get users...");
-    xhr = getXmlHttpRequestObject();
-    xhr.onreadystatechange = dataCallback;
-    // async requests
-    xhr.open("GET", "http://172.22.115.88:6969/users", true);
-    response = "hello";
-    // send the request over the network 
-    xhr.send(null);
-    return response;
+    console.log("Getting build status...");
+        xhr = getXmlHttpRequestObject();
+        xhr.onreadystatechange = dataCallback;
+        xhr.open("GET", "http://localhost:5000/get_status", true);
+        xhr.send(null);
+        console.log("Build data recieved...");
+        return xhr.responseText;
+}
+
+export function dataCallback() {
+    // Check response is ready or not
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log("Out putting build data.");
+        build_status = xhr.responseText;
+        console.log("build status: ", build_status);
+    }
 }
 
