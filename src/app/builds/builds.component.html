@@ -10,20 +10,20 @@
         <button style="background-color:rgb(206, 86, 86);" (click)="deleteAll()">Clear All</button>
     </div>
     <div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let build of builds">
-            <td>{{build.name}}</td>
-            <td>{{build.status}}</td>
-            <td><button style="background-color:rgb(206, 86, 86);" (click)="delete(build)">Delete</button></td>
-        </tr>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let build of builds">
+                <td>{{build.name}}</td>
+                <td class="status {{build.status.toLowerCase()}}">{{build.status}}</td>
+                <td><button style="background-color:rgb(206, 86, 86);" (click)="delete(build)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>       
     </div>
 </div>
