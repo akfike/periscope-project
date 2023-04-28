@@ -53,3 +53,7 @@ export function dataCallback() {
     }
 }
 
+export function returnStatus() {
+    return build_status;
+}
+

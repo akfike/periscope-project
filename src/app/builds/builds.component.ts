@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { Build } from '../build';
 import { BUILDS } from '../mock-builds';
 import { BuildService } from '../build.service';
-
+import { from, Observable } from 'rxjs';
+import { build_status } from '../test';
+import { Response } from '../response';
 @Component({
   selector: 'app-builds',
   templateUrl: './builds.component.html',
@@ -11,7 +13,7 @@ import { BuildService } from '../build.service';
 export class BuildsComponent {
   builds = BUILDS;
   buildURL = "";
-  build: Build = { name: 'Empty', status: "FAILED"};
+  build: Build = { name: "Success", status: "SUCCESS"};
   buildRequest = {};
 
   constructor(private buildService: BuildService) {}
@@ -19,9 +21,9 @@ export class BuildsComponent {
   onSubmit(): void {
     if (this.buildURL !== "") {
       this.buildRequest = {"url": this.buildURL};
-      this.getBuildStatus()
+      this.getBuildStatus();
       this.builds.push(this.build);
-      this.build = { name: 'Empty', status: "FAILED"};
+      this.build = { name: 'Empty', status: "ABORTED"};
     } 
   }
 
@@ -36,7 +38,9 @@ export class BuildsComponent {
     this.builds = [];
   }
 
-  getBuildStatus() {
-    this.buildService.getBuildStatus(this.buildRequest).subscribe(build => this.build = build);
+  getBuildStatus(): Build {
+    // ubscribe(res => this.companyCount = res.count
+    var res = from(this.buildService.getBuildStatus(this.buildRequest));
+   return this.build;
   }
 }
